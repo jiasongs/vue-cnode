@@ -20,9 +20,9 @@
         <div class="tab" v-else-if="item.tab==='ask'">问答</div>
         <div class="tab" v-else-if="item.tab==='share'">分享</div>
         <div class="tab" v-else-if="item.tab==='job'">招聘</div>
-        <router-link class="article-title" :to="{path:'/setting'}" tag="div">
+        <div class="article-title" @click="goListClcik($event)">
           {{item.title}}
-        </router-link>
+        </div>
         <div class="last-reply-time">{{item.last_reply_at | formatTime}}</div> 
       </li>
       <vpageList></vpageList>
@@ -35,6 +35,7 @@
 import vhead from '../../components/header/header'
 import vfooter from '../../components/footer/footer'
 import vpageList from '../../components/pageList/pageList'
+import {mapGetters} from 'vuex'
 export default {
   name: 'index',
   components: {
@@ -61,8 +62,26 @@ export default {
           })
     })
   },
+  updated() {
+    
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      console.log(vm.$store.getters.elLocation)
+      document.body.scrollTop = vm.$store.getters.elLocation
+    })
+  },
+  computed: { 
+    pageIndex:function() {
+      return this.$store.getters.pageIndex
+    },
+    elLocation:function() {
+      return this.$store.getters.elLocation
+    }
+  },
   methods: {
     tabIndex (index) {
+      this.$store.commit('setPageIndex',1)
       this.currentTabIndex = index
       let tabtemp = this.tabEnglish[index]
       if (index==0) {
@@ -76,8 +95,31 @@ export default {
       }).then((res)=> {
         this.source = res.data.data;
       })
+    },
+    goListClcik(event) {
+      this.$store.commit('setElLocation',document.body.scrollTop)
+      this.$router.push({path:'/setting'})
     }
-  }
+  },
+  watch: {
+      pageIndex:function(newValue) {
+        console.log(newValue)
+        let tabtemp = this.tabEnglish[this.currentTabIndex]
+        if (tabtemp=='all') {
+          tabtemp = '';
+        }
+        this.$http.get('https://cnodejs.org/api/v1/topics', {
+          params:{
+            page:newValue,
+            tab:tabtemp
+          }
+        }).then((res)=>{
+            this.source = res.data.data
+            document.body.scrollTop = 0
+            document.documentElement.scrollTop = 0
+        })
+      }
+    }
 }
 </script>
 <style scoped>
@@ -87,7 +129,8 @@ export default {
 .article-list {
   width: 70%;
   margin: 15px 20% 20px 10%;
-  border-radius: 3px;
+  border-radius: 2px;
+  border: 1px solid white;
   background: white;
 }
 .article-list .nav-tab {
@@ -130,7 +173,7 @@ export default {
 }
 .article-list li {
   list-style-type: none;
-  border-bottom: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
 }
 .article-list li:hover {
   background: #f5f5f5;

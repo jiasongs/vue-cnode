@@ -27,9 +27,10 @@ export default {
   },
   methods: {
     goNavClick (index) {
-      console.log(index)
       this.currentIndex = index
-      this.$router.push({path: '/setting'})
+      if (index != 0) {
+        alert('未开发')
+      }
     }
   }
 }
