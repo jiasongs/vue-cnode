@@ -19,3 +19,9 @@ export const formatTime = (value) => {
         }
     }
 }
+export const transferString = (content) => {
+    let string = ''
+    string = content
+    string = string.replace(/\n/g, "<br>")
+    return string
+}

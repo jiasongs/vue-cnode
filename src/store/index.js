@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const state = {
     pageIndex: 0,
-    elLocation: null
+    historyLocation: null
 }
 export default new Vuex.Store({
     state,

@@ -9,6 +9,11 @@ import { formatTime } from './global/global'
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.filter('formatTime', formatTime)
+Vue.directive('title', {
+    update: function(el, binding) {
+        document.title = binding.value
+    }
+})
 new Vue({
     el: '#app',
     router,

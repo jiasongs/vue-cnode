@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index" v-show="isShow">
     <vhead></vhead>
     <div class="article-list">
       <div class="nav-tab">
@@ -20,7 +20,7 @@
         <div class="tab" v-else-if="item.tab==='ask'">问答</div>
         <div class="tab" v-else-if="item.tab==='share'">分享</div>
         <div class="tab" v-else-if="item.tab==='job'">招聘</div>
-        <div class="article-title" @click="goListClcik($event)">
+        <div class="article-title" @click="gotoArticle($event,item)">
           {{item.title}}
         </div>
         <div class="last-reply-time">{{item.last_reply_at | formatTime}}</div> 
@@ -48,35 +48,42 @@ export default {
       source:Array,
       tabs:['全部', '精华', '分享', '问答', '招聘'],
       tabEnglish:['all','good','share','ask','job'],
-      currentTabIndex:0
+      currentTabIndex:0,
+      isShow:false
     }
   },
   mounted () {
     this.$nextTick(() => { // 请求主题首页接口,默认请求第一页
+          this.isShow = false
           this.$http.get('https://cnodejs.org/api/v1/topics', {
             params: {
               page: 1
             }
           }).then((res) => {
-            this.source = res.data.data;
+            this.source = res.data.data
+            this.isShow = true
           })
     })
   },
   updated() {
     
   },
+  activated() {
+    document.body.scrollTop = this.$store.getters.historyLocation
+    document.documentElement.scrollTop = this.$store.getters.historyLocation
+    document.title = 'cnode社区'
+  },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      console.log(vm.$store.getters.elLocation)
-      document.body.scrollTop = vm.$store.getters.elLocation
+      
     })
   },
   computed: { 
     pageIndex:function() {
       return this.$store.getters.pageIndex
     },
-    elLocation:function() {
-      return this.$store.getters.elLocation
+    historyLocation:function() {
+      return this.$store.getters.historyLocation
     }
   },
   methods: {
@@ -96,9 +103,11 @@ export default {
         this.source = res.data.data;
       })
     },
-    goListClcik(event) {
-      this.$store.commit('setElLocation',document.body.scrollTop)
-      this.$router.push({path:'/setting'})
+    gotoArticle(event,item) {
+      let offt = document.body.scrollTop | document.documentElement.scrollTop
+      this.$store.commit('setHistoryLocation',offt)
+      let topicId = item.id
+      this.$router.push({name:'topic',params:{id:topicId}})
     }
   },
   watch: {

@@ -17,12 +17,15 @@
 
 <script>
 export default {
+  // props:[
+  //   currentIndex
+  // ],
   data () {
     return {
-      currentIndex: 0,
       noLoginNavs: ['首页', '新手入门', 'API', '关于', '注册', '登陆'], // 未登陆时头部导航栏
       LoginNavs: ['首页', '未读消息', '新手入门', 'API', '关于', '设置', '退出'], // 登陆后头部导航栏
-      isShowLogin: false // 是否显示登陆后的信息
+      isShowLogin: false, // 是否显示登陆后的信息
+      currentIndex:0
     }
   },
   methods: {

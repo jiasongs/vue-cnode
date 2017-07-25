@@ -72,13 +72,13 @@ export default {
         }
         this.selectIndex = index
         this.$store.commit('setPageIndex',this.selectIndex + 1)
-        this.$store.commit('setElLocation',0)
+        this.$store.commit('setHistoryLocation',0)
       }
     }
 }
 </script>
 
-<style scoped> 
+<style scoped>
 .pagination {
   background: white;
   height: 50px;

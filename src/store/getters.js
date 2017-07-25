@@ -1,2 +1,2 @@
-export const elLocation = state => state.elLocation
+export const historyLocation = state => state.historyLocation
 export const pageIndex = state => state.pageIndex
