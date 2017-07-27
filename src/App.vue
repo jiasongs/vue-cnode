@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <keep-alive>
-      <router-view v-if="this.$route.meta.keepAlive"></router-view>
-    </keep-alive> 
-    <router-view v-if="!this.$route.meta.keepAlive"></router-view>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
+import vhead from './components/header/header'
 export default {
-  name: 'app'
+  name: 'app',
+  components:{
+    vhead
+  }
 }
 </script>
 

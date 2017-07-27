@@ -1,6 +1,5 @@
 <template>
   <div class="index" v-show="isShow">
-    <vhead></vhead>
     <div class="article-list">
       <div class="nav-tab">
         <li :key="tab" v-for="(tab,index) in tabs">
@@ -27,20 +26,15 @@
       </li>
       <vpageList></vpageList>
     </div>
-    <vfooter></vfooter>
   </div>
 </template>
 
 <script>
-import vhead from '../../components/header/header'
-import vfooter from '../../components/footer/footer'
 import vpageList from '../../components/pageList/pageList'
 import {mapGetters} from 'vuex'
 export default {
   name: 'index',
   components: {
-    'vhead':vhead,
-    'vfooter':vfooter,
     'vpageList':vpageList
   },
   data() {
@@ -203,6 +197,7 @@ export default {
 .article-list .article-title {
   display: inline-block;
   vertical-align: middle; 
+  width: 80%;
 }
 .article-list .last-reply-time {
   height: 51px;

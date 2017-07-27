@@ -1,6 +1,5 @@
 <template>
   <div class="topic" v-show="isShow" v-title="source.title">
-    <vhead></vhead>
     <div class="topic_list">
       <div class="topic_head">
         <div class="topic_title">{{source.title}}</div>
@@ -32,13 +31,10 @@
         </li>
       </ul>
     </div>
-    <vfooter></vfooter>
   </div>
 </template>
 
 <script>
-import vhead from '../../components/header/header'
-import vfooter from '../../components/footer/footer'
 import {formatTime,transferString} from '../../global/global'
 export default {
   name:'topic',
@@ -47,10 +43,6 @@ export default {
       source:{author:{loginname:''}},
       isShow:false
     }
-  },
-  components: {
-    'vhead':vhead,
-    'vfooter':vfooter
   },
   mounted () {
     this.$nextTick(() => {
@@ -99,7 +91,7 @@ export default {
   background: white;
 }
 .topic_head {
-  height: 65px;
+  /* height: 65px; */
   vertical-align: middle;
   width: 100%;
   border-bottom: 1px solid #e6e6e6;
@@ -117,8 +109,9 @@ export default {
 .topic_head .topic_detail {
   font-size: 12px;
   color: #838383;
-  margin-left: 10px;
-   margin-top: 5px; 
+  margin: 5px 0px 5px 10px;
+  /* margin-left: 10px;
+  margin-top: 5px;  */
 }
 .topic_head span::before{
    content: "•";
