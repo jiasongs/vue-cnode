@@ -7,7 +7,7 @@
     </div>    
     <div class="nav_list_box">
       <ul>
-        <li :key="item" v-for="(item, index) in noLoginNavs">
+        <li :key="item" v-for="(item, index) in navs">
           <div @click="goNavClick(index)" :class="{currentState:currentIndex === index}">{{item}}</div>       
         </li>
       </ul>
@@ -23,17 +23,50 @@ export default {
   data () {
     return {
       noLoginNavs: ['首页', '新手入门', 'API', '关于', '注册', '登陆'], // 未登陆时头部导航栏
-      LoginNavs: ['首页', '未读消息', '新手入门', 'API', '关于', '设置', '退出'], // 登陆后头部导航栏
-      isShowLogin: false, // 是否显示登陆后的信息
-      currentIndex:0
+      loginNavs: ['首页', '未读消息', '新手入门', 'API', '关于', '设置', '退出'] // 登陆后头部导航栏\
+    }
+  },
+  computed: {
+    currentIndex:function() {
+      return this.$store.getters.currentHaderIndex
+    },
+    isLogin:function() {
+      return this.$store.getters.isLogin
+    },
+    navs:function(){
+      return this.isLogin ? this.loginNavs : this.noLoginNavs
     }
   },
   methods: {
     goNavClick (index) {
-      this.currentIndex = index
-      if (index != 0) {
-        alert('未开发')
+      this.$store.commit('setCurrentHaderIndex',index)
+      if (this.isLogin) {
+        switch (index) {
+        case 0:
+          this.$router.push({name:'home'});
+          break;
+        case 6:
+          this.$store.commit('setIsLogin',false)
+          this.$store.commit('setCurrentHaderIndex',0)
+          break;
+        default:
+          alert('未开发')
+          break;
       }
+      } else {
+        switch (index) {
+        case 0:
+          this.$router.push({name:'home'});
+          break;
+        case 5:
+          this.$router.push({name:'login'})
+          break;
+        default:
+          alert('未开发')
+          break;
+      }
+      }
+      
     }
   }
 }

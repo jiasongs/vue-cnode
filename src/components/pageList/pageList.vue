@@ -63,9 +63,6 @@ export default {
           if (pageCount < this.itemCount) {
               pageCount = 5
           }
-          // if (selectIndexTemp > 2) { // 先注释掉测试一下
-          //     selectIndexTemp = selectIndexTemp - 1
-          // }
           if (index != 0)  {
               this.pageListCount = pageCount
           }
