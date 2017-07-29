@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <keep-alive>
+      <!-- zzz -->
+      <!-- 123 -->
+      <div></div>
       <router-view></router-view>
     </keep-alive>
   </div>
