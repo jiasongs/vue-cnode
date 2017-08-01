@@ -78,4 +78,7 @@ export default {
   height: 25px;
   width: 260px;
 }
+.login_btn {
+
+}
 </style>

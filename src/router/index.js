@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import main from '../page/main/main.vue'
-import index from '../page/index/index.vue'
+// import index from '../page/index/index.vue'
 import topic from '../page/topic/topic.vue'
 import login from '../page/login/login.vue'
 import setting from '../page/setting/setting.vue'
 Vue.use(Router)
-export default new Router({
+var pc = true
+const index = resolve => {
+    if (pc) {
+         require(['../page/index/index.vue'], resolve)
+    }
+}
+const router = new Router({
     mode: 'history',
     routes: [{
         path: '/',
@@ -43,3 +49,5 @@ export default new Router({
         ]
     }, ]
 })
+export default router
+
