@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-  name:'footer'
+  name: 'footer'
 }
 </script>
 <style>
@@ -16,13 +16,15 @@ export default {
   height: 190px;
   background: white;
 }
+
 .footer p {
   margin-left: 10%;
 }
+
 .footer a {
   cursor: pointer;
   margin-left: 10%;
-  text-decoration:none;
+  text-decoration: none;
   color: #008bcf;
 }
 </style>

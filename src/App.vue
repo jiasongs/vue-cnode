@@ -7,12 +7,8 @@
 </template>
 
 <script>
-import vhead from './components/header/header'
 export default {
-  name: 'app',
-  components:{
-    vhead
-  }
+  name: 'app'
 }
 </script>
 

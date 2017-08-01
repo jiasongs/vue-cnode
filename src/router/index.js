@@ -16,7 +16,6 @@ const router = new Router({
     mode: 'history',
     routes: [{
         path: '/',
-        name: 'main',
         component: main,
         children: [{
                 path: '',
