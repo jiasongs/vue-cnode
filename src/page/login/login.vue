@@ -90,6 +90,11 @@ export default {
   padding-left: 5px;
   outline: none;
 }
+<<<<<<< HEAD
+.login_btn {
+
+}
+=======
 
 .login_btn {
   margin: 20px 0px 20px 150px;
@@ -150,4 +155,5 @@ export default {
   color: white;
   border-radius: 3px;
 } */
+>>>>>>> 70db07f1a9d33b9f1404de0a88d3b49cba830dd2
 </style>
