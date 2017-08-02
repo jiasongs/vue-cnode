@@ -90,11 +90,6 @@ export default {
   padding-left: 5px;
   outline: none;
 }
-<<<<<<< HEAD
-.login_btn {
-
-}
-=======
 
 .login_btn {
   margin: 20px 0px 20px 150px;
@@ -106,54 +101,4 @@ export default {
   border-radius: 3px;
   outline: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .login_btn:focus {
-  margin: 20px 0px 20px 150px;
-  width: 200px;
-  height: 30px;
-  background: #80bd01;
-  border: 0px;
-  color: white;
-  border-radius: 3px;
-} */
->>>>>>> 70db07f1a9d33b9f1404de0a88d3b49cba830dd2
 </style>

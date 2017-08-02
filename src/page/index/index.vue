@@ -209,7 +209,9 @@ export default {
 .article-list .article-title {
   display: inline-block;
   vertical-align: middle;
-  width: 80%;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .article-list .last-reply-time {

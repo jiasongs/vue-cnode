@@ -1,15 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import main from '../page/main/main.vue'
-// import index from '../page/index/index.vue'
-import topic from '../page/topic/topic.vue'
-import login from '../page/login/login.vue'
-import setting from '../page/setting/setting.vue'
 Vue.use(Router)
 var pc = true
+const main = resolve => {
+    if (pc) {
+        require(['../page/main/main.vue'], resolve)
+    }
+}
 const index = resolve => {
     if (pc) {
-         require(['../page/index/index.vue'], resolve)
+        require(['../page/index/index.vue'], resolve)
+    }
+}
+const topic = resolve => {
+    if (pc) {
+        require(['../page/topic/topic.vue'], resolve)
+    }
+}
+const login = resolve => {
+    if (pc) {
+        require(['../page/login/login.vue'], resolve)
+    }
+}
+const setting = resolve => {
+    if (pc) {
+        require(['../page/setting/setting.vue'], resolve)
     }
 }
 const router = new Router({
@@ -25,28 +40,35 @@ const router = new Router({
                 path: '/home',
                 name: 'home',
                 component: index,
-                meta: { keepAlive: true }
+                meta: {
+                    keepAlive: true
+                }
             },
             {
                 path: '/topic/:id',
                 name: 'topic',
                 component: topic,
-                meta: { keepAlive: false }
+                meta: {
+                    keepAlive: false
+                }
             },
             {
                 path: '/login',
                 name: 'login',
                 component: login,
-                meta: { keepAlive: true }
+                meta: {
+                    keepAlive: true
+                }
             },
             {
                 path: '/setting',
                 name: 'setting',
                 component: setting,
-                meta: { keepAlive: true }
+                meta: {
+                    keepAlive: true
+                }
             }
         ]
     }, ]
 })
 export default router
-
