@@ -21,7 +21,7 @@ const NotFound = resolve => require(['../page/404/notFound.vue'], resolve)
 const scrollBehavior = (to, from, savedPosition) => {
     if (savedPosition) {
         // savedPosition is only available for popstate navigations.
-        console.log(savedPosition.y)
+        // console.log(savedPosition.y)
         return savedPosition
     } else {
         const position = {}
@@ -67,25 +67,37 @@ const router = new Router({
                     path: '/home',
                     name: 'home',
                     component: index,
-                    meta: { keepAlive: true, scrollToTop: true }
+                    meta: {
+                        keepAlive: true,
+                        scrollToTop: true
+                    }
                 },
                 {
                     path: '/topic/:id',
                     name: 'topic',
                     component: topic,
-                    meta: { keepAlive: true, scrollToTop: true }
+                    meta: {
+                        keepAlive: false,
+                        scrollToTop: true
+                    }
                 },
                 {
                     path: '/login',
                     name: 'login',
                     component: login,
-                    meta: { keepAlive: true, scrollToTop: true }
+                    meta: {
+                        keepAlive: true,
+                        scrollToTop: true
+                    }
                 },
                 {
                     path: '/setting',
                     name: 'setting',
                     component: setting,
-                    meta: { keepAlive: true, scrollToTop: true }
+                    meta: {
+                        keepAlive: true,
+                        scrollToTop: true
+                    }
                 }
             ]
         },
