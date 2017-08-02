@@ -22,10 +22,10 @@
       <ul class="comment_detail">
         <li :key="item.content" v-for="(item,index) in replies">
           <router-link to="" class="comment_detail_avatar">
-            <img :src="item.author.avatar_url">
+            <img :src="item.author.avatar_url" alt="用户头像">
           </router-link>
           <div class="comment_detail_userInfo">
-            <router-link to="" class="comment_detail_username">{{item.author.loginname}}</router-link>
+            <router-link to="/setting" class="comment_detail_username">{{item.author.loginname}}</router-link>
             <router-link to="" class="comment_detail_usertime">{{index + 1 + '楼•' + formatTime(item.create_at)}}</router-link>
             <span class="comment_detail_author" v-if="item.author.loginname === source.author.loginname">作者</span>
           </div>
@@ -43,11 +43,13 @@ export default {
   data() {
     return {
       source: { author: { loginname: '' } },
-      isShow: false
+      isShow: false,
+      text: ''
     }
   },
   mounted() {
     this.$nextTick(() => {
+      console.log('mounted')
       this.isShow = false
       let topicId = this.$route.params.id
       let url = 'https://cnodejs.org/api/v1/topic/' + topicId
@@ -60,6 +62,48 @@ export default {
         this.source = res.data.data
       })
     })
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate')
+  },
+  updated() {
+    console.log('updated')
+  },
+  scrollBehavior(to, from, savedPosition) {
+    console.log('scrollBehavior')
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log('beforeRouteEnter')
+    next(vm => {
+      vm.text = from.name
+      // vm.isShow = false
+      // let topicId = vm.$route.params.id
+      // let url = 'https://cnodejs.org/api/v1/topic/' + topicId
+      // vm.$http.get(url, {
+      //   params: {
+
+      //   }
+      // }).then((res) => {
+      //   vm.isShow = true
+      //   vm.source = res.data.data
+      // })
+    })
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log('to:' + to.name)
+    console.log('from:' + from.name)
+    // to:home from:topic 后退 
+    // to:setting from:topic 前进
+    if (this.text == to.name) {
+      console.log('后退')
+    } else {
+      console.log('前进')
+    }
+    // if (to.name != 'home') {
+    //   console.log('zz')
+    //   console.log(this.$route.meta)
+    // }
+    next()
   },
   computed: {
     create_time: function () { // 发布时间
@@ -87,7 +131,7 @@ export default {
 }
 
 .topic_list {
-  width: 65.5%;
+  width: 66%;
   margin: 15px 20% 20px 8%;
   border-radius: 2px;
   border: 1px solid white;
@@ -106,8 +150,9 @@ export default {
   height: 20px; */
   font-size: 22px;
   font-weight: 700;
-  margin-left: 10px;
-  margin-top: 15px;
+  /* margin-left: 10px;
+  margin-top: 15px; */
+  margin: 15px 15px 0px 15px;
   vertical-align: center;
   color: #313534;
 }
@@ -115,7 +160,7 @@ export default {
 .topic_head .topic_detail {
   font-size: 12px;
   color: #838383;
-  margin: 5px 0px 5px 10px;
+  margin: 5px 0px 5px 15px;
   /* margin-left: 10px;
   margin-top: 5px;  */
 }
@@ -128,6 +173,25 @@ export default {
   display: block;
   margin: 0px 20px 0px 20px;
   font-size: 15px;
+}
+
+.topic_content .prettyprint {
+  font-size: 14px;
+  border-radius: 0;
+  padding: 0 15px;
+  border: none;
+  margin: 20px -10px;
+  border-width: 1px 0;
+  background: #f7f7f7;
+  -o-tab-size: 4;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+.topic_content .prettyprint code {
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
 }
 
 .topic_content p strong {
@@ -152,8 +216,8 @@ export default {
 }
 
 .topic_comment_list {
-  width: 70%;
-  margin: 15px 20% 20px 10%;
+  width: 66%;
+  margin: 15px 20% 20px 8%;
   border-radius: 2px;
   border: 1px solid white;
   background: white;
@@ -191,6 +255,7 @@ export default {
 
 .comment_detail_content {
   margin-left: 40px;
+  margin-right: 40px;
   font-size: 15px;
 }
 
@@ -237,6 +302,13 @@ export default {
 .comment_detail_content a {
   color: #008bcf;
   text-decoration: none;
+}
+
+.comment_detail_content img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
 }
 
 .comment_detail_content a:hover {

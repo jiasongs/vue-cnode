@@ -3,7 +3,7 @@
     <vhead></vhead>
     <keep-alive>
       <router-view v-if="this.$route.meta.keepAlive"></router-view>
-    </keep-alive> 
+    </keep-alive>
     <router-view v-if="!this.$route.meta.keepAlive"></router-view>
     <vfooter></vfooter>
   </div>
@@ -13,11 +13,11 @@
 import vhead from '../../components/header/header'
 import vfooter from '../../components/footer/footer'
 export default {
-    name:'main',
-    components: {
-      vhead,
-      vfooter
-    }
+  name: 'main',
+  components: {
+    vhead,
+    vfooter
+  }
 }
 </script>
 

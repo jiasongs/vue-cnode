@@ -8,7 +8,7 @@
       </div>
       <li :key="item.title" v-for="item in source">
         <router-link class="author-avatar_url" :to="{path:'/setting'}" tag="div">
-          <img :src="item.author.avatar_url" alt="用户图像" :title="item.author.loginname">
+          <img :src="item.author.avatar_url" alt="用户头像" :title="item.author.loginname">
         </router-link>
         <div class="comment-reading">
           <div class="comment-count">{{item.reply_count}}</div>
@@ -59,25 +59,12 @@ export default {
       })
     })
   },
-  updated() {
-
-  },
   activated() {
-    document.body.scrollTop = this.$store.getters.historyLocation
-    document.documentElement.scrollTop = this.$store.getters.historyLocation
     document.title = 'cnode社区'
-  },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-
-    })
   },
   computed: {
     pageIndex: function () {
       return this.$store.getters.pageIndex
-    },
-    historyLocation: function () {
-      return this.$store.getters.historyLocation
     }
   },
   methods: {
@@ -98,8 +85,6 @@ export default {
       })
     },
     gotoArticle(event, item) {
-      let offt = document.body.scrollTop | document.documentElement.scrollTop
-      this.$store.commit('setHistoryLocation', offt)
       let topicId = item.id
       this.$router.push({ name: 'topic', params: { id: topicId } })
     }
@@ -131,7 +116,7 @@ export default {
 }
 
 .article-list {
-  width: 65.5%;
+  width: 66%;
   margin: 15px 20% 20px 8%;
   border-radius: 2px;
   border: 1px solid white;
@@ -209,9 +194,18 @@ export default {
 .article-list .article-title {
   display: inline-block;
   vertical-align: middle;
+<<<<<<< HEAD
   max-width: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
+=======
+  max-width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  /*溢出隐藏*/
+  text-overflow: ellipsis;
+  /*溢出显示省略号*/
+>>>>>>> 7239bcb8a79cca3c8714edb7d50e1efc15640c82
 }
 
 .article-list .last-reply-time {
