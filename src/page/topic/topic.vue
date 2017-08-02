@@ -25,7 +25,7 @@
             <img :src="item.author.avatar_url" alt="用户头像">
           </router-link>
           <div class="comment_detail_userInfo">
-            <router-link to="" class="comment_detail_username">{{item.author.loginname}}</router-link>
+            <router-link to="/setting" class="comment_detail_username">{{item.author.loginname}}</router-link>
             <router-link to="" class="comment_detail_usertime">{{index + 1 + '楼•' + formatTime(item.create_at)}}</router-link>
             <span class="comment_detail_author" v-if="item.author.loginname === source.author.loginname">作者</span>
           </div>
@@ -48,16 +48,42 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.isShow = false
-      let topicId = this.$route.params.id
+      console.log('mounted')
+      // this.isShow = false
+      // let topicId = this.$route.params.id
+      // let url = 'https://cnodejs.org/api/v1/topic/' + topicId
+      // this.$http.get(url, {
+      //   params: {
+
+      //   }
+      // }).then((res) => {
+      //   this.isShow = true
+      //   this.source = res.data.data
+      // })
+    })
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate')
+  },
+  updated() {
+    console.log('updated')
+  },
+  scrollBehavior(to, from, savedPosition) {
+    console.log('scrollBehavior')
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log('beforeRouteEnter')
+    next(vm => {
+      vm.isShow = false
+      let topicId = vm.$route.params.id
       let url = 'https://cnodejs.org/api/v1/topic/' + topicId
-      this.$http.get(url, {
+      vm.$http.get(url, {
         params: {
 
         }
       }).then((res) => {
-        this.isShow = true
-        this.source = res.data.data
+        vm.isShow = true
+        vm.source = res.data.data
       })
     })
   },

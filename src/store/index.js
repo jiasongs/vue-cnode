@@ -5,7 +5,6 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const state = {
     pageIndex: 0,
-    historyLocation: 0,
     isLogin: false,
     currentHaderIndex: 0
 }

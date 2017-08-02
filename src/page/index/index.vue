@@ -59,25 +59,12 @@ export default {
       })
     })
   },
-  updated() {
-
-  },
   activated() {
-    document.body.scrollTop = this.$store.getters.historyLocation
-    document.documentElement.scrollTop = this.$store.getters.historyLocation
     document.title = 'cnode社区'
-  },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-
-    })
   },
   computed: {
     pageIndex: function () {
       return this.$store.getters.pageIndex
-    },
-    historyLocation: function () {
-      return this.$store.getters.historyLocation
     }
   },
   methods: {
@@ -98,8 +85,6 @@ export default {
       })
     },
     gotoArticle(event, item) {
-      let offt = document.body.scrollTop | document.documentElement.scrollTop
-      this.$store.commit('setHistoryLocation', offt)
       let topicId = item.id
       this.$router.push({ name: 'topic', params: { id: topicId } })
     }
