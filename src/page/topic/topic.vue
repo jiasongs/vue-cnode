@@ -49,56 +49,67 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      console.log('mounted')
-      this.isShow = false
-      let topicId = this.$route.params.id
-      let url = 'https://cnodejs.org/api/v1/topic/' + topicId
-      this.$http.get(url, {
-        params: {
-
-        }
-      }).then((res) => {
-        this.isShow = true
-        this.source = res.data.data
-      })
-    })
-  },
-  beforeUpdate() {
-    console.log('beforeUpdate')
-  },
-  updated() {
-    console.log('updated')
-  },
-  scrollBehavior(to, from, savedPosition) {
-    console.log('scrollBehavior')
-  },
-  beforeRouteEnter(to, from, next) {
-    console.log('beforeRouteEnter')
-    next(vm => {
-      vm.text = from.name
-      // vm.isShow = false
-      // let topicId = vm.$route.params.id
+      // console.log('mounted')
+      // this.isShow = false
+      // let topicId = this.$route.params.id
       // let url = 'https://cnodejs.org/api/v1/topic/' + topicId
-      // vm.$http.get(url, {
+      // this.$http.get(url, {
       //   params: {
 
       //   }
       // }).then((res) => {
-      //   vm.isShow = true
-      //   vm.source = res.data.data
+      //   this.isShow = true
+      //   this.source = res.data.data
       // })
     })
   },
+  beforeUpdate() {
+    // console.log('beforeUpdate')
+
+  },
+  updated() {
+    // console.log('updated')
+  },
+  scrollBehavior(to, from, savedPosition) {
+    // console.log('scrollBehavior')
+  },
+  beforeRouteEnter(to, from, next) {
+    // console.log('beforeRouteEnter')
+    next(vm => {
+      vm.text = from.name
+      console.log('zz:' + vm.$route.meta.ceshi)
+      if (vm.$route.meta.ceshi) {
+        vm.isShow = false
+        let topicId = vm.$route.params.id
+        let url = 'https://cnodejs.org/api/v1/topic/' + topicId
+        vm.$http.get(url, {
+          params: {
+
+          }
+        }).then((res) => {
+          vm.isShow = true
+          vm.source = res.data.data
+        })
+      }
+    })
+  },
+  beforeRouteUpdate(to, from, next) {
+
+  },
   beforeRouteLeave(to, from, next) {
-    console.log('to:' + to.name)
-    console.log('from:' + from.name)
+    console.log(to.name + ':' + to.meta.ceshi)
+    console.log(from.name + ':' + from.meta.ceshi)
+
+    // console.log(from.name + ':' + to.meta.ceshi)
+    // console.log('to:' + to.name)
+    // console.log('from:' + from.name)
     // to:home from:topic 后退 
     // to:setting from:topic 前进
-    if (this.text == to.name) {
-      console.log('后退')
-    } else {
-      console.log('前进')
-    }
+    // if (this.text == to.name) {
+    //   console.log('后退')
+    // } else {
+    //   console.log('前进')
+    // }
     // if (to.name != 'home') {
     //   console.log('zz')
     //   console.log(this.$route.meta)

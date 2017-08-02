@@ -1,33 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-<<<<<<< HEAD
-Vue.use(Router)
-var pc = true
-const main = resolve => {
-    if (pc) {
-        require(['../page/main/main.vue'], resolve)
-    }
-}
-const index = resolve => {
-    if (pc) {
-        require(['../page/index/index.vue'], resolve)
-    }
-}
-const topic = resolve => {
-    if (pc) {
-        require(['../page/topic/topic.vue'], resolve)
-    }
-}
-const login = resolve => {
-    if (pc) {
-        require(['../page/login/login.vue'], resolve)
-    }
-}
-const setting = resolve => {
-    if (pc) {
-        require(['../page/setting/setting.vue'], resolve)
-=======
-var pc = true
+
 const main = resolve => {
     require.ensure([], () => resolve(require('../page/main/main.vue')), 'group-main')
 }
@@ -48,12 +21,15 @@ const NotFound = resolve => require(['../page/404/notFound.vue'], resolve)
 const scrollBehavior = (to, from, savedPosition) => {
     if (savedPosition) {
         // savedPosition is only available for popstate navigations.
-        // console.log(savedPosition.y)
+        console.log(to.name + ':' + savedPosition.y)
+        to.meta.ceshi = false
         return savedPosition
     } else {
+        // console.log(to.name + ':' + savedPosition.y)
+        to.meta.ceshi = true
         const position = {}
-            // new navigation.
-            // scroll to anchor by returning the selector
+        // new navigation.
+        // scroll to anchor by returning the selector
         if (to.hash) {
             position.selector = to.hash
         }
@@ -67,7 +43,6 @@ const scrollBehavior = (to, from, savedPosition) => {
         // if the returned position is falsy or an empty object,
         // will retain current scroll position.
         return position
->>>>>>> 7239bcb8a79cca3c8714edb7d50e1efc15640c82
     }
 }
 Vue.use(Router)
@@ -76,7 +51,13 @@ const router = new Router({
     base: __dirname,
     scrollBehavior,
     routes: [{
-<<<<<<< HEAD
+        path: '/index.html',
+        redirect: '/home'
+    }, {
+        path: '*',
+        name: 'NotFound',
+        component: NotFound
+    }, {
         path: '/',
         component: main,
         children: [{
@@ -88,7 +69,9 @@ const router = new Router({
                 name: 'home',
                 component: index,
                 meta: {
-                    keepAlive: true
+                    keepAlive: true,
+                    scrollToTop: true,
+                    ceshi: false
                 }
             },
             {
@@ -96,7 +79,9 @@ const router = new Router({
                 name: 'topic',
                 component: topic,
                 meta: {
-                    keepAlive: false
+                    keepAlive: true,
+                    scrollToTop: true,
+                    ceshi: true
                 }
             },
             {
@@ -104,7 +89,9 @@ const router = new Router({
                 name: 'login',
                 component: login,
                 meta: {
-                    keepAlive: true
+                    keepAlive: true,
+                    scrollToTop: true,
+                    ceshi: false
                 }
             },
             {
@@ -112,66 +99,12 @@ const router = new Router({
                 name: 'setting',
                 component: setting,
                 meta: {
-                    keepAlive: true
+                    keepAlive: true,
+                    scrollToTop: true,
+                    ceshi: false
                 }
             }
         ]
     }, ]
-=======
-            path: '/index.html',
-            redirect: '/home'
-        },
-        {
-            path: '*',
-            name: 'NotFound',
-            component: NotFound
-        },
-        {
-            path: '/',
-            component: main,
-            children: [{
-                    path: '',
-                    redirect: '/home'
-                },
-                {
-                    path: '/home',
-                    name: 'home',
-                    component: index,
-                    meta: {
-                        keepAlive: true,
-                        scrollToTop: true
-                    }
-                },
-                {
-                    path: '/topic/:id',
-                    name: 'topic',
-                    component: topic,
-                    meta: {
-                        keepAlive: false,
-                        scrollToTop: true
-                    }
-                },
-                {
-                    path: '/login',
-                    name: 'login',
-                    component: login,
-                    meta: {
-                        keepAlive: true,
-                        scrollToTop: true
-                    }
-                },
-                {
-                    path: '/setting',
-                    name: 'setting',
-                    component: setting,
-                    meta: {
-                        keepAlive: true,
-                        scrollToTop: true
-                    }
-                }
-            ]
-        },
-    ]
->>>>>>> 7239bcb8a79cca3c8714edb7d50e1efc15640c82
 })
 export default router

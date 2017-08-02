@@ -194,18 +194,12 @@ export default {
 .article-list .article-title {
   display: inline-block;
   vertical-align: middle;
-<<<<<<< HEAD
-  max-width: 70%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-=======
   max-width: 75%;
   white-space: nowrap;
   overflow: hidden;
   /*溢出隐藏*/
   text-overflow: ellipsis;
   /*溢出显示省略号*/
->>>>>>> 7239bcb8a79cca3c8714edb7d50e1efc15640c82
 }
 
 .article-list .last-reply-time {
