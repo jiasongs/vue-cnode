@@ -22,7 +22,7 @@
       <ul class="comment_detail">
         <li :key="item.content" v-for="(item,index) in replies">
           <router-link to="" class="comment_detail_avatar">
-            <img :src="item.author.avatar_url">
+            <img :src="item.author.avatar_url" alt="用户头像">
           </router-link>
           <div class="comment_detail_userInfo">
             <router-link to="" class="comment_detail_username">{{item.author.loginname}}</router-link>
@@ -87,7 +87,7 @@ export default {
 }
 
 .topic_list {
-  width: 65.5%;
+  width: 66%;
   margin: 15px 20% 20px 8%;
   border-radius: 2px;
   border: 1px solid white;
@@ -106,8 +106,9 @@ export default {
   height: 20px; */
   font-size: 22px;
   font-weight: 700;
-  margin-left: 10px;
-  margin-top: 15px;
+  /* margin-left: 10px;
+  margin-top: 15px; */
+  margin: 15px 15px 0px 15px;
   vertical-align: center;
   color: #313534;
 }
@@ -115,7 +116,7 @@ export default {
 .topic_head .topic_detail {
   font-size: 12px;
   color: #838383;
-  margin: 5px 0px 5px 10px;
+  margin: 5px 0px 5px 15px;
   /* margin-left: 10px;
   margin-top: 5px;  */
 }
@@ -152,8 +153,8 @@ export default {
 }
 
 .topic_comment_list {
-  width: 70%;
-  margin: 15px 20% 20px 10%;
+  width: 66%;
+  margin: 15px 20% 20px 8%;
   border-radius: 2px;
   border: 1px solid white;
   background: white;
@@ -191,6 +192,7 @@ export default {
 
 .comment_detail_content {
   margin-left: 40px;
+  margin-right: 40px;
   font-size: 15px;
 }
 
@@ -237,6 +239,13 @@ export default {
 .comment_detail_content a {
   color: #008bcf;
   text-decoration: none;
+}
+
+.comment_detail_content img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
 }
 
 .comment_detail_content a:hover {

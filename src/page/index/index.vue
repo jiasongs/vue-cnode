@@ -8,7 +8,7 @@
       </div>
       <li :key="item.title" v-for="item in source">
         <router-link class="author-avatar_url" :to="{path:'/setting'}" tag="div">
-          <img :src="item.author.avatar_url" alt="用户图像" :title="item.author.loginname">
+          <img :src="item.author.avatar_url" alt="用户头像" :title="item.author.loginname">
         </router-link>
         <div class="comment-reading">
           <div class="comment-count">{{item.reply_count}}</div>
@@ -131,7 +131,7 @@ export default {
 }
 
 .article-list {
-  width: 65.5%;
+  width: 66%;
   margin: 15px 20% 20px 8%;
   border-radius: 2px;
   border: 1px solid white;
@@ -209,7 +209,12 @@ export default {
 .article-list .article-title {
   display: inline-block;
   vertical-align: middle;
-  width: 80%;
+  max-width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  /*溢出隐藏*/
+  text-overflow: ellipsis;
+  /*溢出显示省略号*/
 }
 
 .article-list .last-reply-time {
