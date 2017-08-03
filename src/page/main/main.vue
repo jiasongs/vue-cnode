@@ -2,9 +2,8 @@
   <div class="main">
     <vhead></vhead>
     <keep-alive>
-      <router-view v-if="this.$route.meta.keepAlive"></router-view>
+      <router-view></router-view>
     </keep-alive>
-    <router-view v-if="!this.$route.meta.keepAlive"></router-view>
     <vfooter></vfooter>
   </div>
 </template>
