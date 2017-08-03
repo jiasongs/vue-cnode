@@ -69,7 +69,6 @@ export default {
       }
       this.selectIndex = index
       this.$store.commit('setPageIndex', this.selectIndex + 1)
-      this.$store.commit('setHistoryLocation', 0)
     }
   }
 }

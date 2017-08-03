@@ -48,6 +48,7 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
+      console.log(vm.$route.meta.refresh)
       if (vm.$route.meta.refresh) {
         vm.isShow = false
         let topicId = vm.$route.params.id

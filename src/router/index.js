@@ -19,17 +19,18 @@ const setting = resolve => {
 const NotFound = resolve => require(['../page/404/notFound.vue'], resolve)
 
 const scrollBehavior = (to, from, savedPosition) => {
-    console.log('scrollBehavior')
     if (savedPosition) {
         if (to.name == 'topic') {
-            console.log(to.name)
+            console.log(to.name + ':' + savedPosition.y)
             to.meta.refresh = false
         }
         return savedPosition
     } else {
         if (to.name == 'topic') {
             to.meta.refresh = true
+
         }
+        console.log(savedPosition)
         const position = {}
         if (to.hash) {
             position.selector = to.hash

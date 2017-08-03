@@ -1,5 +1,5 @@
-export const setHistoryLocation = (state, historyLocation) => {
-    state.historyLocation = historyLocation
+export const setPageIndex = (state, pageIndex) => {
+    state.pageIndex = pageIndex
 }
 export const setIsLogin = (state, isLogin) => {
     state.isLogin = isLogin
