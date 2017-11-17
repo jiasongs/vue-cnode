@@ -10,6 +10,8 @@
         .ceshi {
             height: 1000px;
             display: block;
+            background: green;
+            position: absolute;
         }
         
         .zero {
@@ -56,21 +58,22 @@
 
 <body>
     <div id="app">
-        <div class="zero" :class="{fix:true}">
+        <div class="ceshi">
+            <div>adsad</div>
+            <div>adsad</div>
+            <div>adsad</div>
+            <div>adsad</div>
+            <div>adsad</div>
+            <div>adsad</div>
+            <div>adsad</div>
+            <div>adsad</div>
+            <div>adsad</div>
+        </div>
+        <div class="zero" :class="{fix:ceshi}">
             <div class="first">123</div>
             <div class="second">456</div>
         </div>
-        <div class="ceshi">adsad
-            <div>adsad</div>
-            <div>adsad</div>
-            <div>adsad</div>
-            <div>adsad</div>
-            <div>adsad</div>
-            <div>adsad</div>
-            <div>adsad</div>
-            <div>adsad</div>
-            <div>adsad</div>
-        </div>
+
     </div>
     <script>
         new Vue({
@@ -87,7 +90,7 @@
                 onScroll() {
                     var scroll = document.body.scrollTop;
                     console.log(scroll)
-                    if (scroll > 50) {
+                    if (scroll > 200) {
                         this.ceshi = true;
                     } else {
                         this.ceshi = false;
