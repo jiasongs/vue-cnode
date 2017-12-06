@@ -6,6 +6,8 @@
     <title>demo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <style>
         .ceshi {
             height: 1000px;
@@ -58,7 +60,7 @@
 
 <body>
     <div id="app">
-        <div class="ceshi">
+        <!-- <div class="ceshi">
             <div>adsad</div>
             <div>adsad</div>
             <div>adsad</div>
@@ -68,22 +70,59 @@
             <div>adsad</div>
             <div>adsad</div>
             <div>adsad</div>
-        </div>
+        </div> -->
         <div class="zero" :class="{fix:ceshi}">
             <div class="first">123</div>
             <div class="second">456</div>
         </div>
-
+        <div>{{msg}}</div>
     </div>
     <script>
         new Vue({
             el: '#app',
             data: {
-                ceshi: false
+                ceshi: false,
+                msg: '1'
             },
             mounted: function() {
-                this.$nextTick(function() {
-                    window.addEventListener('scroll', this.onScroll)
+                window.addEventListener('scroll', this.onScroll);
+                axios.defaults.withCredentials = true;
+                // axios.get('https://bird.ioliu.cn/v2?url=http://yc.qdhchb.com:105/base/gtsites', {
+                //         // username: 'admin',
+                //         // pwd: 'admin'
+                //     })
+                //     .then((response) => {
+                //         this.msg = response;
+                //     })
+                //     .catch((error) => {
+                //         this.msg = error;
+                //     });
+                //https://bird.ioliu.cn/v1?url=
+                $.ajax({
+                    type: 'get',
+                    url: "https://bird.ioliu.cn/v1?url=http://yc.qdhchb.com:105/base/gtsites",
+                    // headers: {
+                    //     'Cookie': 'JSESSIONID=97313632496AD56712D51F41A74DAE4C',
+                    //     'Accept	': 'text/html,application/xhtml+xm…plication/xml;q=0.9,*/*;q=0.8'
+                    // },
+                    // // data: {
+                    // //     // "username": 'admin',
+                    // //     // "pwd": 'admin'
+
+                    // // },
+                    // dataType: 'jsonp',
+                    // crossDomain: true,
+                    // dataType: 'jsonp',
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: msg => {
+                        this.msg = msg;
+                    },
+                    error: error => {
+                        // console.log(error)
+                        this.msg = error;
+                    }
                 })
             },
             methods: {
