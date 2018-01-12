@@ -12,7 +12,7 @@
         * {
             background-repeat: no-repeat;
         }
-
+        
         body {
             color: #333;
             font-family: 'PingFang SC', tahoma, arial, 'helvetica neue', 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif;
@@ -20,7 +20,7 @@
             line-height: 1.5;
             background-color: #f0f0f0;
         }
-
+        
         .survey_wrap {
             width: 100%;
             max-width: 1000px;
@@ -32,12 +32,12 @@
             line-height: 1.8em;
             margin: auto;
         }
-
+        
         .survey_main {
             padding-top: 80px;
             padding-bottom: 30px;
         }
-
+        
         .survey_title {
             padding-top: 5px;
             padding-bottom: 5px;
@@ -46,13 +46,13 @@
             word-break: break-all;
             margin: 0;
         }
-
+        
         .inner {
             margin-left: auto;
             margin-right: auto;
             max-width: 710px;
         }
-
+        
         .title_content {
             padding: 10px 0;
             font-size: 24px;
@@ -61,14 +61,13 @@
             margin: 0;
             word-break: break-word;
         }
-
+        
         .survey_suffix {
             padding-top: 5px;
             padding-bottom: 5px;
             text-align: left;
         }
-
-
+        
         .prefix_content {
             font-size: 14px;
             color: #333333;
@@ -76,7 +75,7 @@
             font-weight: normal;
             word-break: break-word;
         }
-
+        
         .suffix_content {
             font-size: 14px;
             color: #333333;
@@ -84,36 +83,36 @@
             font-weight: normal;
             word-break: break-word;
         }
-
+        
         .title_text {
             font-size: 14px;
             font-weight: normal;
             margin: 0;
             vertical-align: top;
         }
-
+        
         .title_text p {
             margin-bottom: 0px;
             margin-top: 20px;
         }
-
+        
         .title_index {
             float: left;
         }
-
+        
         .title_text ::after {
             content: '*';
             font-weight: 700;
             color: #f00;
             margin-left: 5px;
         }
-
+        
         .description {
             font-size: 12px;
             padding-bottom: 10px;
             margin-top: 5px;
         }
-
+        
         .option_text {
             display: inline-block;
             width: 95%;
@@ -121,7 +120,7 @@
             line-height: 40px;
             cursor: pointer;
         }
-
+        
         .option_item {
             vertical-align: top;
             position: relative;
@@ -130,21 +129,21 @@
             height: 40px;
             cursor: pointer;
         }
-
+        
         .option_item:focus {
             outline: 1px solid #479de6;
         }
-
+        
         .option_item:hover {
             background-color: #f5f5f5;
         }
-
+        
         .survey_control {
             overflow: hidden;
             text-align: center;
             padding: 30px 0;
         }
-
+        
         .survey_btn {
             cursor: pointer;
             display: inline-block;
@@ -160,7 +159,7 @@
             font-size: 16px;
             color: #fff;
         }
-
+        
         .tips_error {
             background-color: #d92424;
             color: #ffeae6;
@@ -169,11 +168,11 @@
             border-radius: 11px;
             -webkit-border-radius: 11px;
         }
-
+        
         .description_text {
             height: 20px;
         }
-
+        
         .shake-enter-active {
             animation: shakeIn .5s;
             animation-delay: .3s;
@@ -181,13 +180,12 @@
         /* .shake-leave-active {
             animation: shakeIn .5s reverse;
         } */
-
+        
         @keyframes shakeIn {
             from,
             to {
                 transform: translate3d(0, 0, 0);
             }
-
             10%,
             30%,
             50%,
@@ -195,7 +193,6 @@
             90% {
                 transform: translate3d(-10px, 0, 0);
             }
-
             20%,
             40%,
             60%,
@@ -245,10 +242,8 @@
                                     </div>
                                     <div class="inputs">
                                         <div class="option_item" v-for="(itemOption,indexOption) in item.options" tabindex="0">
-                                            <input :id="'option_' + currentPageId +'_' + itemOption.id" v-model="selectDataSource[item.id]" v-if="item.type == 'radio'"
-                                                :value="itemOption.id" :type="item.type" class="survey_form_checkbox" @click="optionClick(item.id)">
-                                            <input :id="'option_' + currentPageId +'_' + itemOption.id" v-model="selectDataSource[item.id]" v-if="item.type == 'checkbox'"
-                                                :value="itemOption.id" :type="item.type" class="survey_form_checkbox" @click="optionClick(item.id)">
+                                            <input :id="'option_' + currentPageId +'_' + itemOption.id" v-model="selectDataSource[item.id]" v-if="item.type == 'radio'" :value="itemOption.id" :type="item.type" class="survey_form_checkbox" @click="optionClick(item.id)">
+                                            <input :id="'option_' + currentPageId +'_' + itemOption.id" v-model="selectDataSource[item.id]" v-if="item.type == 'checkbox'" :value="itemOption.id" :type="item.type" class="survey_form_checkbox" @click="optionClick(item.id)">
                                             <label :for=" 'option_' + currentPageId + '_' + itemOption.id ">
                                                 <i class="survey_form_ui "></i>
                                                 <div class="option_text " v-html="itemOption.text "></div>
@@ -277,37 +272,39 @@
 
         new Vue({
             el: '#container',
-            data: {
-                dataSource: {
-                    'title': '',
-                    'prefix': ''
-                },
-                pages: [{
-                    'id': '',
-                    'questions': [{
-                        'type': '',
+            data() {
+                return {
+                    dataSource: {
                         'title': '',
-                        'description': '',
-                        'options': [{
-                            'text': '',
+                        'prefix': ''
+                    },
+                    pages: [{
+                        'id': '',
+                        'questions': [{
+                            'type': '',
+                            'title': '',
+                            'description': '',
+                            'options': [{
+                                'text': '',
+                                'id': ''
+                            }],
                             'id': ''
-                        }],
-                        'id': ''
-                    }]
-                }],
-                currentPage: 0,
-                selectDataSource: {},
-                unSelect: [],
-                isHidden: false,
-                shakeName: []
+                        }]
+                    }],
+                    currentPage: 0,
+                    selectDataSource: {},
+                    unSelect: [],
+                    isHidden: false,
+                    shakeName: []
+                }
             },
-            mounted: function () {
+            mounted() {
                 axios.get(URL)
                     .then((response) => {
                         var json = response.data.data;
                         this.dataSource = json;
                         this.pages = json.pages
-                        this.questions.forEach(function (item) {
+                        this.questions.forEach(function(item) {
                             if (item.type == 'checkbox') {
                                 this.selectDataSource[item.id] = [];
                             }
@@ -318,33 +315,33 @@
                     });
             },
             computed: {
-                currentPageId: function () {
+                currentPageId: function() {
                     return this.pages[this.currentPage].id;
                 },
-                questions: function () {
+                questions: function() {
                     return this.pages[this.currentPage].questions;
                 }
             },
             methods: {
-                escapeHTML: function (a) {
+                escapeHTML: function(a) {
                     a = " " + a;
                     return a.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(
                         /&quot;/g, '"').replace(/&apos;/g, "'");
                 },
-                optionClick: function (q_id) {
+                optionClick: function(q_id) {
                     let _this = this;
-                    this.questions.forEach(function (question, index) {
+                    this.questions.forEach(function(question, index) {
                         question.description = '';
                         _this.shakeName[index] = '';
                     });
                 },
-                zzz: function () {
+                zzz: function() {
                     alert(JSON.stringify(this.selectDataSource));
                 },
-                survey_nextpage: function () {
+                survey_nextpage: function() {
                     let _this = this;
                     this.unSelect = [];
-                    this.questions.forEach(function (question, index) {
+                    this.questions.forEach(function(question, index) {
                         var q_id = question.id;
                         var q_type = question.type;
                         _this.shakeName[index] = '';
@@ -370,7 +367,7 @@
                         }
                     });
                     console.log(_this.shakeName) // _this.unSelect.array.forEach(function(q_id,index)
-                    // if (index == 0) { // _this.questions // } // }); _this.isHidden = true;
+                        // if (index == 0) { // _this.questions // } // }); _this.isHidden = true;
                     var q_id = _this.unSelect[0];
                     var questionIdElement = document.getElementById("question-" +
                         q_id);

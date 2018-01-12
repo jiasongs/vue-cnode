@@ -30,85 +30,92 @@
 </template>
 
 <script>
-import vpageList from '../../components/pageList/pageList'
-import { mapGetters } from 'vuex'
+import vpageList from "../../components/pageList/pageList";
+import { mapGetters } from "vuex";
 export default {
-  name: 'index',
+  name: "index",
   components: {
-    'vpageList': vpageList
+    vpageList: vpageList
   },
   data() {
     return {
       source: Array,
-      tabs: ['全部', '精华', '分享', '问答', '招聘'],
-      tabEnglish: ['all', 'good', 'share', 'ask', 'job'],
+      tabs: ["全部", "精华", "分享", "问答", "招聘"],
+      tabEnglish: ["all", "good", "share", "ask", "job"],
       currentTabIndex: 0,
       isShow: false
-    }
+    };
   },
   mounted() {
-    this.$nextTick(() => { // 请求主题首页接口,默认请求第一页
-      this.isShow = false
-      this.$http.get('https://cnodejs.org/api/v1/topics', {
-        params: {
-          page: 1
-        }
-      }).then((res) => {
-        this.source = res.data.data
-        this.isShow = true
-      })
-    })
+    this.$nextTick(() => {
+      // 请求主题首页接口,默认请求第一页
+      this.isShow = false;
+      this.$http
+        .get("https://cnodejs.org/api/v1/topics", {
+          params: {
+            page: 1
+          }
+        })
+        .then(res => {
+          this.source = res.data.data;
+          this.isShow = true;
+        });
+    });
   },
   activated() {
-    document.title = 'cnode社区'
+    document.title = "cnode社区";
   },
   computed: {
-    pageIndex: function () {
-      return this.$store.getters.pageIndex
+    pageIndex: function() {
+      return this.$store.getters.pageIndex;
     }
   },
   methods: {
     tabIndex(index) {
-      this.$store.commit('setPageIndex', 1)
-      this.currentTabIndex = index
-      let tabtemp = this.tabEnglish[index]
+      this.$store.commit("setPageIndex", 1);
+      this.currentTabIndex = index;
+      let tabtemp = this.tabEnglish[index];
       if (index == 0) {
-        tabtemp = '';
+        tabtemp = "";
       }
-      this.$http.get('https://cnodejs.org/api/v1/topics', {
-        params: {
-          page: 1,
-          tab: tabtemp
-        }
-      }).then((res) => {
-        this.source = res.data.data;
-      })
+      this.$http
+        .get("https://cnodejs.org/api/v1/topics", {
+          params: {
+            page: 1,
+            tab: tabtemp
+          }
+        })
+        .then(res => {
+          this.source = res.data.data;
+        });
     },
     gotoArticle(event, item) {
-      let topicId = item.id
-      this.$router.push({ name: 'topic', params: { id: topicId } })
+      let topicId = item.id;
+      this.$router.push({ name: "topic", params: { id: topicId } });
     }
   },
   watch: {
-    pageIndex: function (newValue) {
-      console.log(newValue)
-      let tabtemp = this.tabEnglish[this.currentTabIndex]
-      if (tabtemp == 'all') {
-        tabtemp = '';
+    pageIndex: function(newValue) {
+      console.log(newValue);
+      let tabtemp = this.tabEnglish[this.currentTabIndex];
+      if (tabtemp == "all") {
+        tabtemp = "";
       }
-      this.$http.get('https://cnodejs.org/api/v1/topics', {
-        params: {
-          page: newValue,
-          tab: tabtemp
-        }
-      }).then((res) => {
-        this.source = res.data.data
-        document.body.scrollTop = 0
-        document.documentElement.scrollTop = 0
-      })
+      this.$http
+        .get("https://cnodejs.org/api/v1/topics", {
+          params: {
+            page: newValue,
+            tab: tabtemp
+          }
+        })
+        .then(res => {
+          this.source = res.data.data;
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        });
     }
   }
-}
+};
 </script>
 <style scoped>
 .index {
