@@ -78,6 +78,27 @@
         <div>{{msg}}</div>
     </div>
     <script>
+        // String.prototype.self = function() {
+        //     return this
+        // }
+        // var a = 'str'
+        // var b = a.self()
+        // console.log(String('str'))
+        var arr = [5, 0, -56, 90, 12]
+        for (var i = 0; i < arr.length - 1; i++) {
+            for (var j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] < arr[j + 1]) {
+                    var temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        console.log(arr)
+
+        function add(a) {
+            console.log(a)
+        }
         new Vue({
             el: '#app',
             data: {
@@ -87,20 +108,21 @@
             mounted: function() {
                 window.addEventListener('scroll', this.onScroll);
                 axios.defaults.withCredentials = true;
-                // axios.get('https://bird.ioliu.cn/v2?url=http://yc.qdhchb.com:105/base/gtsites', {
-                //         // username: 'admin',
-                //         // pwd: 'admin'
-                //     })
-                //     .then((response) => {
-                //         this.msg = response;
-                //     })
-                //     .catch((error) => {
-                //         this.msg = error;
-                //     });
-                //https://bird.ioliu.cn/v1?url=
-                $.ajax({
-                    type: 'get',
-                    url: "https://bird.ioliu.cn/v1?url=http://yc.qdhchb.com:105/base/gtsites",
+                add(124645)
+                    // axios.get('https://bird.ioliu.cn/v2?url=http://yc.qdhchb.com:105/base/gtsites', {
+                    //         // username: 'admin',
+                    //         // pwd: 'admin'
+                    //     })
+                    //     .then((response) => {
+                    //         this.msg = response;
+                    //     })
+                    //     .catch((error) => {
+                    //         this.msg = error;
+                    //     });
+                    //https://bird.ioliu.cn/v1?url=
+                    // $.ajax({
+                    //     type: 'get',
+                    //     url: "https://bird.ioliu.cn/v1?url=http://yc.qdhchb.com:105/base/gtsites",
                     // headers: {
                     //     'Cookie': 'JSESSIONID=97313632496AD56712D51F41A74DAE4C',
                     //     'Accept	': 'text/html,application/xhtml+xm…plication/xml;q=0.9,*/*;q=0.8'
@@ -109,21 +131,21 @@
                     // //     // "username": 'admin',
                     // //     // "pwd": 'admin'
 
-                    // // },
-                    // dataType: 'jsonp',
-                    // crossDomain: true,
-                    // dataType: 'jsonp',
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    success: msg => {
-                        this.msg = msg;
-                    },
-                    error: error => {
-                        // console.log(error)
-                        this.msg = error;
-                    }
-                })
+                // // },
+                // dataType: 'jsonp',
+                // crossDomain: true,
+                // dataType: 'jsonp',
+                //     xhrFields: {
+                //         withCredentials: true
+                //     },
+                //     success: msg => {
+                //         this.msg = msg;
+                //     },
+                //     error: error => {
+                //         // console.log(error)
+                //         this.msg = error;
+                //     }
+                // })
             },
             methods: {
                 onScroll() {
