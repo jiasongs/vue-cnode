@@ -1,19 +1,31 @@
 # vue-cnode
 
-> A Vue.js project
+使用Vue.js实现的CNode社区（https://cnodejs.org/）
 
-## Build Setup
+# 效果
+
+目前网站挂在http://www.jiasongs.com
+
+# 运行
 
 ``` bash
-# install dependencies
+# 下载node包
 npm install
 
-# serve with hot reload at localhost:8080
+# 本地服务器
 npm run dev
 
-# build for production with minification
+# 发布
 npm run build
 
 ```
+# 使用的类库
+```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+"vue-router": "^2.6.0",
+"vuex": "^2.3.1"
+
+```
+# 版本
+
+1.0.0
