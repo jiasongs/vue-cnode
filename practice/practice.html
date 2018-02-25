@@ -76,6 +76,11 @@
             <div class="second">456</div>
         </div>
         <div>{{msg}}</div>
+        <div class="div_upload" onclick="getElementById('pic_select').click()">
+            <a>上传</a>
+        </div>
+        <input style="display:none;" type="file" accept="image" id="pic_select" onchange="upload('#pic_select', '#img');">
+        <img src="" id="img" />
     </div>
     <script>
         // String.prototype.self = function() {
@@ -84,10 +89,35 @@
         // var a = 'str'
         // var b = a.self()
         // console.log(String('str'))
-        var arr = [5, 0, -56, 90, 12]
+        var upload = function(c, d) {
+            var $c = document.querySelector(c),
+                $d = document.querySelector(d),
+                file = $c.files[0],
+                reader = new FileReader();
+            console.log($c.files)
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+                console.log(e)
+                $d.setAttribute("src", e.target.result);
+            };
+        };
+
+        var arr = [{
+            addBooksTime: 2
+        }, {
+            addBooksTime: 10
+        }, {
+            addBooksTime: 50
+        }, {
+            addBooksTime: 1
+        }, {
+            addBooksTime: 100
+        }]
         for (var i = 0; i < arr.length - 1; i++) {
             for (var j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] < arr[j + 1]) {
+                let obj = arr[j]
+                let obj2 = arr[j + 1]
+                if (obj.addBooksTime > obj2.addBooksTime) {
                     var temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
